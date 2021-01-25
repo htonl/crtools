@@ -1,9 +1,6 @@
 import csv
 # CSV of language data from https://en.wikipedia.org/wiki/Letter_frequency
 
-ETAOIN = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
 # Class to do frequency analysis
 #
 # Create an instance of this class and use the @methods on a string
@@ -71,7 +68,13 @@ class FreqAnalysis:
             self.sum_dict[k]))
         return best_lang_guess, self.sum_dict
     
-    # 
+    # Score a string based off of a simple frequency analysis of the letters
+    # that appear in the text
+    #
+    # @arg string to score
+    # @arg lang language of the string, if unknown try fa.detect_language
+    #
+    # Add one to score for each letter found in both input & lang top/bot 6
     def score_string(self, string, lang):
         # First get the char frequency for this input string
         self.get_char_freq(string)
@@ -92,12 +95,3 @@ class FreqAnalysis:
             if char in input_top_six:
                 score += 1
         return score
-
-# main for debugging    
-#if __name__ == "__main__":
-#    fa = FreqAnalysis()
-#    english = 'The is english language text in english Im not sure how \
-#            long a passage needs to be in order for it to realize with a better \
-#            guess that this is english'
-#    print(fa.score_string(english, 'English'))
-
