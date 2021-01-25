@@ -16,9 +16,10 @@ print_byte_as_hex((xor_fl(bytes.fromhex(s1), bytes.fromhex(s2))))
 # ----- challenge 3: -----
 print('challenge 3: print xor of single character key')
 s1 = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+
 # Start at 'a'
-iv = 0x61
 scores = []
+iv = 0x61
 for i in range (0,26):
     s2 = str(hex(iv)).split('x')[1]*int((len(s1)/2))
     out = xor_fl(bytes.fromhex(s1), bytes.fromhex(s2))
@@ -43,6 +44,5 @@ max_score = max(scores, key=lambda item:item[1])[1]
 for s in scores:
     if s[1] == max_score:
         print(s)
-
 # ----- challenge 3: -----
 
