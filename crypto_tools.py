@@ -34,8 +34,15 @@ def print_byte_as_hex(hexbytes):
 
 # @Method freq_analysis
 #
-# @arg hexbytes - hexbytes to detect language and score
+# @arg    hexbytes - hexbytes to detect language and score
+# @argopt lang     - known language of the string
 #
-# return tuple (language, score)
-def freq_analysis(hexbytes):
-    return (detect_language(hexbytes), score_hexbytes(hexbytes))
+# return tuple (language, score) if no lang is provided, then
+# frequency analysis will attempt to guess the language
+def freq_analysis(hexbytes, lang=''):
+    # convert hexbytes to string
+    string = hexbytes.decode("utf-8")
+    if lang == '':
+        return (detect_language(string), score_string(string))
+    else:
+        return (lang, score_string(string, lang=lang))
