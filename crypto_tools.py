@@ -1,8 +1,6 @@
 import base64
 import binascii
-from frequency_analysis import detect_language
-from frequency_analysis import score_hexbytes
-from frequency_analysis import 
+from frequency_analysis import FreqAnalysis
 
 # @Method b64_hex
 #
@@ -32,6 +30,7 @@ def xor_fl(b0, b1):
 def print_byte_as_hex(hexbytes):
     print(binascii.hexlify(hexbytes)) 
 
+
 # @Method freq_analysis
 #
 # @arg    hexbytes - hexbytes to detect language and score
@@ -42,7 +41,8 @@ def print_byte_as_hex(hexbytes):
 def freq_analysis(hexbytes, lang=''):
     # convert hexbytes to string
     string = hexbytes.decode("utf-8")
+    fa = FreqAnalysis()
     if lang == '':
-        return (detect_language(string), score_string(string))
+        return fa.score_string(string, lang=fa.detect_language(string))
     else:
-        return (lang, score_string(string, lang=lang))
+        return fa.score_string(string, lang=lang)

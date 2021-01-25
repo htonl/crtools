@@ -1,5 +1,6 @@
 # crtools
-Small set of useful python tools for cryptography CTF challenges
+Small set of useful python tools for cryptography CTF challenges. All tools
+offered without warranty under the BSD license.
 
 crypto_tools.py contains the tools.
 
